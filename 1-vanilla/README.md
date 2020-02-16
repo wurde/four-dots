@@ -10,3 +10,11 @@ Improvements:
 
 - Instrument all of the buttons with onclick event handlers.
 - Use CSS to center content on the page.
+
+Bugs:
+
+- Doesn't support mobile layouts. Add responsive design.
+- Styling of the board is lacking. Delineate between cells.
+- Missing examples of Red and White dots.
+- Generic button styles are boring.
+- Missing game state management.
