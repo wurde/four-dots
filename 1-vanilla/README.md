@@ -6,13 +6,10 @@ This is an implementation of Four Dots using only vanilla HTML, CSS, and JavaScr
 
 I was able to layout initial HTML, connect a CSS file, and connect a JavaScript file within 15 minutes.
 
-Improvements:
+Bugs and Improvements:
 
 - Instrument all of the buttons with onclick event handlers.
 - Use CSS to center content on the page.
-
-Bugs:
-
 - Doesn't support mobile layouts. Add responsive design.
 - Styling of the board is lacking. Delineate between cells.
 - Missing examples of Red and White dots.
