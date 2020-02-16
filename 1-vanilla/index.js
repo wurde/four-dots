@@ -6,8 +6,11 @@ function sayHello() {
   alert("Hello");
 }
 
-function addDot(colIndex) {
-  alert(colIndex);
+function addDot(e) {
+  let target = e.target;
+  let colIndex = target.dataset.colIndex;
+  let buildEvent = new CustomEvent("build", { detail: colIndex });
+  target.dispatchEvent(buildEvent);
 }
 
 /**
@@ -24,7 +27,14 @@ function initGameState() {
   for (let i = 0; i < 12; i++) {
     state["board"].push(new Array(12));
   }
-  console.log(state["board"].length)
+
+  let btns = document.querySelectorAll(".add-dot-btn");
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].style.border = '1px solid red';
+    btns[i].addEventListener("build", e => {
+      alert(JSON.stringify(e.detail));
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initGameState);

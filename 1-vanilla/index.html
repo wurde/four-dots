@@ -17,18 +17,22 @@
       <table class="board">
         <thead>
           <tr>
-            <th><button class="add-dot-btn" onclick="addDot(1)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(2)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(3)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(4)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(5)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(6)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(7)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(8)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(9)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(10)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(11)">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(12)">+</button></th>
+            <!--
+              Gotchas: I have to pass event to have access to `event.target`.
+              This is especially important when trying to dispatch events.
+             -->
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="1">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="2">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="3">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="4">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="5">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="6">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="7">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="8">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="9">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="10">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="11">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="12">+</button></th>
           </tr>
         </thead>
         <tbody>
