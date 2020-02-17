@@ -58,8 +58,22 @@ function initGameState() {
     alert(JSON.stringify({colIndex, player}))
 
     // Update game state.
-    // Update DOM.
+      // Update cell with cell-red or cell-black class.
+      // If column filled, then emit event
+
+    // Check if GameOver, if true then emit event.
   });
+
+  es.addEventListener("ColumnFilled", e => {
+    // Set AddDotBtn to disabled.
+    alert("ColumnFilled");
+  })
+
+  es.addEventListener("GameOver", e => {
+    // Set all AddDotBtns to disabled.
+    // Toggle visibility on dismissible WinnerAlert w confetti.
+    alert("GameOver");
+  })
 }
 
 /**
