@@ -1,8 +1,8 @@
 /**
- * Define the application class.
+ * Dependencies
  */
 
-class App extends HTMLElement {}
+import App from "./App.js";
 
 /**
  * Wait for the DOM to load content.

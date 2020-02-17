@@ -4,8 +4,12 @@
   "description": "Play Four Dots in the browser!",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:2": "nodemon 2-web-components/server.js"
   },
   "author": "Andy Bettisworth",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
 }
