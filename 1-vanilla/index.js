@@ -79,22 +79,60 @@ function updateGamestate({ colIndex, player }) {
   if (rowIndex == 0) {
     dispatch("ColumnFilled", { colIndex });
   }
-  dispatch("DotAdded", { colIndex, rowIndex });
+  dispatch("DotAdded", { colIndex, rowIndex, player });
 }
 
-function checkIfGameOverImproved() {
+function checkIfGameOver(e) {
+  const colIndex = e.detail.colIndex;
+  const rowIndex = e.detail.rowIndex;
+  const player = e.detail.player;
+
   const ds = document.getElementById("data-store");
-
   const board = JSON.parse(ds.dataset.board);
-  let winner = null;
+  let count = 1;
 
-  // Set coords of last filledCell [i,j]
   // Check vertical
+  let counter = rowIndex + 1;
+  while (counter <= 11) {
+    let x = board[colIndex][counter];
+    if (x == player) {
+      count++;
+      break;
+    };
+    counter++;
+  }
+  if (count == 4) {
+    dispatch("GameOver", { winner: player });
+    return;
+  }
+
   // Check horizontal
+  count = 1;
+  let leftCounter = colIndex - 1;
+  while (leftCounter >= 0) {
+    let x = board[leftCounter][rowIndex];
+    if (!x) break;
+    if (x == player) {
+      count++;
+    }
+    leftCounter--;
+  }
+  let rightCounter = colIndex + 1;
+  while (rightCounter <= 11) {
+    let x = board[rightCounter][rowIndex];
+    if (!x) break;
+    if (x == player) {
+      count++;
+    }
+    rightCounter++;
+  }
+  if (count == 4) {
+    dispatch("GameOver", { winner: player });
+    return;
+  }
+
   // Check diagonalLeft
   // Check diagonalRight
-
-  if (winner) dispatch("GameOver", { winner });
 }
 
 /**
@@ -122,9 +160,7 @@ function initGameState() {
     btn.disabled = true;
   });
 
-  es.addEventListener("DotAdded", e => {
-    checkIfGameOverImproved();
-  });
+  es.addEventListener("DotAdded", checkIfGameOver);
 
   es.addEventListener("GameOver", e => {
     // Set all AddDotBtns to disabled.
