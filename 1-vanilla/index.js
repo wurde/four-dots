@@ -12,10 +12,13 @@ function createBoard() {
 
 function restartGame() {
   const es = document.getElementById("event-stream");
-  es.dataset.board = createBoard();
+  es.dataset.board = JSON.stringify(createBoard());
 
-  const els = Array.from(document.getElementsByClassName("cell"));
-  els.forEach(cell => cell.className = "cell");
+  Array.from(document.getElementsByClassName("cell"))
+  .forEach(cell => cell.className = "cell");
+
+  Array.from(document.getElementsByClassName("add-dot-btn"))
+  .forEach(btn => btn.disabled = false);
 }
 
 function addDot() {
