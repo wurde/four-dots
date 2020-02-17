@@ -26,7 +26,7 @@ function restartGame() {
   const es = document.getElementById("event-stream");
   const ds = document.getElementById("data-store");
 
-  ds.dataset.currentPlayer = "red";
+  ds.dataset.currentPlayer = "blue";
   ds.dataset.board = JSON.stringify(createBoard());
 
   Array.from(document.getElementsByClassName("cell"))
@@ -44,7 +44,7 @@ function addDot() {
   const colIndex = target.dataset.colIndex;
   const player = ds.dataset.currentPlayer;
 
-  ds.dataset.currentPlayer = player == "red" ?  "black" : "red";
+  ds.dataset.currentPlayer = player == "blue" ?  "black" : "blue";
   dispatch("AddDot", { target, player, colIndex });
 }
 
