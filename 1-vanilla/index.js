@@ -2,6 +2,17 @@
  * Define helpers
  */
 
+function dispatch(type, data) {
+  const es = document.getElementById("event-stream");
+  if (!es) return;
+
+  es.dispatchEvent(
+    new CustomEvent(type, {
+      detail: data
+    })
+  );
+}
+
 function createBoard() {
   const size = 12;
   let board = [];
@@ -13,7 +24,10 @@ function createBoard() {
 
 function restartGame() {
   const es = document.getElementById("event-stream");
-  es.dataset.board = JSON.stringify(createBoard());
+  const ds = document.getElementById("data-store");
+
+  ds.dataset.currentPlayer = "red";
+  ds.dataset.board = JSON.stringify(createBoard());
 
   Array.from(document.getElementsByClassName("cell"))
   .forEach(cell => cell.className = "cell");
@@ -24,25 +38,14 @@ function restartGame() {
 
 function addDot() {
   const es = document.getElementById("event-stream");
+  const ds = document.getElementById("data-store");
+
   const target = event.target;
   const colIndex = target.dataset.colIndex;
-  const player = es.dataset.currentPlayer;
+  const player = ds.dataset.currentPlayer;
 
-  let buildEvent = new CustomEvent("AddDot", {
-    detail: {
-      target,
-      player,
-      colIndex
-    }
-  });
-
-  if (player == "red") {
-    es.dataset.currentPlayer = "black";
-  } else {
-    es.dataset.currentPlayer = "red";
-  }
-
-  es.dispatchEvent(buildEvent);
+  ds.dataset.currentPlayer = player == "red" ?  "black" : "red";
+  dispatch("AddDot", { target, player, colIndex });
 }
 
 function findRowIndex({ board, colIndex }) {
@@ -63,64 +66,35 @@ function findRowIndex({ board, colIndex }) {
 }
 
 function updateGamestate({ colIndex, player }) {
-  const es = document.getElementById("event-stream");
-  let board = JSON.parse(es.dataset.board);
+  const ds = document.getElementById("data-store");
 
+  let board = JSON.parse(ds.dataset.board);
   let rowIndex = findRowIndex({ board, colIndex });
   board[colIndex][rowIndex] = player;
-  es.dataset.board = JSON.stringify(board);
+  ds.dataset.board = JSON.stringify(board);
 
   let cell = document.querySelector(`.cell[data-col="${colIndex}"][data-row="${rowIndex}"]`)
   cell.classList.add(`cell-${player}`);
 
   if (rowIndex == 0) {
-    es.dispatchEvent(
-      new CustomEvent("ColumnFilled", {
-        detail: {
-          colIndex
-        }
-      })
-    );
+    dispatch("ColumnFilled", { colIndex });
   }
+  dispatch("DotAdded", { colIndex, rowIndex });
 }
 
-function checkIfGameOver() {
-  const es = document.getElementById("event-stream");
-  let board = JSON.parse(es.dataset.board);
-  let colLength = board.length;
-  let rowLength = board[0].length;
+function checkIfGameOverImproved() {
+  const ds = document.getElementById("data-store");
+
+  const board = JSON.parse(ds.dataset.board);
   let winner = null;
 
-  for (let i = rowLength - 1; i >= 0; i--) {
-    let isEmptyRow = true;
-    console.log(`\nRow: ${i}`);
+  // Set coords of last filledCell [i,j]
+  // Check vertical
+  // Check horizontal
+  // Check diagonalLeft
+  // Check diagonalRight
 
-    for (let j = 0; j < colLength; j++) {
-      let x = board[j][i];
-
-      if (x) {
-        let count = 0;
-        console.log(`Item at [${i}, ${j}]`);
-        if (j >= 3) searchLeft();
-        if (j <= 8) searchRight();
-        if (j >= 3 && i <= 3) searchLeftDiagonal();
-        if (i <= 3) searchUp();
-        if (j <= 8 && i <= 3) searchRightDiagonal();
-      }
-    }
-
-    if (isEmptyRow) break;
-  }
-
-  if (winner) {
-    es.dispatchEvent(
-      new CustomEvent("GameOver", {
-        detail: {
-          winner
-        }
-      })
-    );
-  }
+  if (winner) dispatch("GameOver", { winner });
 }
 
 /**
@@ -128,17 +102,16 @@ function checkIfGameOver() {
  */
 
 function initGameState() {
-  const es = document.getElementById("event-stream");
+  restartGame();
 
-  es.dataset.currentPlayer = "red";
-  es.dataset.board = JSON.stringify(createBoard());
+  const es = document.getElementById("event-stream");
+  const ds = document.getElementById("data-store");
 
   es.addEventListener("AddDot", e => {
     const colIndex = Number.parseInt(e.detail.colIndex);
     const player = e.detail.player;
 
     updateGamestate({ colIndex, player });
-    checkIfGameOver();
   });
 
   es.addEventListener("ColumnFilled", e => {
@@ -147,7 +120,11 @@ function initGameState() {
       `.add-dot-btn[data-col-index="${colIndex}"]`
     );
     btn.disabled = true;
-  })
+  });
+
+  es.addEventListener("DotAdded", e => {
+    checkIfGameOverImproved();
+  });
 
   es.addEventListener("GameOver", e => {
     // Set all AddDotBtns to disabled.
