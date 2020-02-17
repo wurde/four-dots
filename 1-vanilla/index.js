@@ -22,13 +22,21 @@ function addDot() {
   const es = document.getElementById("event-stream");
   const target = event.target;
   const colIndex = target.dataset.colIndex;
+  const player = es.dataset.currentPlayer;
 
   let buildEvent = new CustomEvent("AddDot", {
     detail: {
       target,
+      player,
       colIndex
     }
   });
+
+  if (player == "red") {
+    es.dataset.currentPlayer = "black";
+  } else {
+    es.dataset.currentPlayer = "red";
+  }
 
   es.dispatchEvent(buildEvent);
 }
@@ -45,6 +53,9 @@ function initGameState() {
 
   es.addEventListener("AddDot", e => {
     const colIndex = e.detail.colIndex;
+    const player = e.detail.player;
+
+    alert(JSON.stringify({colIndex, player}))
 
     // Update game state.
     // Update DOM.
