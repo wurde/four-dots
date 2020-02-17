@@ -3,9 +3,10 @@
  */
 
 function createBoard() {
+  const size = 12;
   let board = [];
-  for (let i = 0; i < 12; i++) {
-    board.push(new Array(12));
+  for (let i = 0; i < size; i++) {
+    board.push(new Array(size));
   }
   return board;
 }
@@ -84,7 +85,42 @@ function updateGamestate({ colIndex, player }) {
 }
 
 function checkIfGameOver() {
-  // Check if GameOver, if true then emit event { winner }.
+  const es = document.getElementById("event-stream");
+  let board = JSON.parse(es.dataset.board);
+  let colLength = board.length;
+  let rowLength = board[0].length;
+  let winner = null;
+
+  for (let i = rowLength - 1; i >= 0; i--) {
+    let isEmptyRow = true;
+    console.log(`\nRow: ${i}`);
+
+    for (let j = 0; j < colLength; j++) {
+      let x = board[j][i];
+
+      if (x) {
+        let count = 0;
+        console.log(`Item at [${i}, ${j}]`);
+        if (j >= 3) searchLeft();
+        if (j <= 8) searchRight();
+        if (j >= 3 && i <= 3) searchLeftDiagonal();
+        if (i <= 3) searchUp();
+        if (j <= 8 && i <= 3) searchRightDiagonal();
+      }
+    }
+
+    if (isEmptyRow) break;
+  }
+
+  if (winner) {
+    es.dispatchEvent(
+      new CustomEvent("GameOver", {
+        detail: {
+          winner
+        }
+      })
+    );
+  }
 }
 
 /**
