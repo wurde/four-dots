@@ -41,23 +41,38 @@ function addDot() {
   es.dispatchEvent(buildEvent);
 }
 
-function updateGamestate({ colIndex, player }) {
-  const es = document.getElementById("event-stream");
-  let board = JSON.parse(es.dataset.board);
+function findRowIndex({ board, colIndex }) {
   let colLength = board[colIndex].length;
-  let prevIndex = 0;
+  let rowIndex = 0;
 
   for (let i = 0; i < colLength; i++) {
     if (board[colIndex][i]) {
-      board[colIndex][prevIndex] = player;
-      break;
+      return rowIndex;
     }
-    if (i == colLength - 1) {
-      board[colIndex][i] = player;
+
+    rowIndex = i;
+
+    if (rowIndex == colLength - 1) {
+      return rowIndex;
     }
-    prevIndex = i;
   }
-  return board;
+}
+
+function updateGamestate({ colIndex, player }) {
+  const es = document.getElementById("event-stream");
+  let board = JSON.parse(es.dataset.board);
+
+  let rowIndex = findRowIndex({ board, colIndex });
+  board[colIndex][rowIndex] = player;
+
+  let cell = document.querySelector(`.cell[data-col="${colIndex}"][data-row="${rowIndex}"]`)
+  cell.classList.add(`cell-${player}`);
+
+  // If column filled, then emit event
+}
+
+function checkIfGameOver() {
+  // Check if GameOver, if true then emit event.
 }
 
 /**
@@ -74,11 +89,8 @@ function initGameState() {
     const colIndex = Number.parseInt(e.detail.colIndex);
     const player = e.detail.player;
 
-    es.dataset.board = JSON.stringify(updateGamestate({ colIndex, player }));
-    // Update cell with cell-red or cell-black class.
-    // If column filled, then emit event
-
-    // Check if GameOver, if true then emit event.
+    updateGamestate({ colIndex, player });
+    checkIfGameOver();
   });
 
   es.addEventListener("ColumnFilled", e => {
