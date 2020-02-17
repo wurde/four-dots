@@ -41,25 +41,42 @@ function addDot() {
   es.dispatchEvent(buildEvent);
 }
 
+function updateGamestate({ colIndex, player }) {
+  const es = document.getElementById("event-stream");
+  let board = JSON.parse(es.dataset.board);
+  let colLength = board[colIndex].length;
+  let prevIndex = 0;
+
+  for (let i = 0; i < colLength; i++) {
+    if (board[colIndex][i]) {
+      board[colIndex][prevIndex] = player;
+      break;
+    }
+    if (i == colLength - 1) {
+      board[colIndex][i] = player;
+    }
+    prevIndex = i;
+  }
+  return board;
+}
+
 /**
  * Initialize game state
  */
 
 function initGameState() {
   const es = document.getElementById("event-stream");
-  es.dataset.currentPlayer = "red";
 
-  es.dataset.board = createBoard();
+  es.dataset.currentPlayer = "red";
+  es.dataset.board = JSON.stringify(createBoard());
 
   es.addEventListener("AddDot", e => {
-    const colIndex = e.detail.colIndex;
+    const colIndex = Number.parseInt(e.detail.colIndex);
     const player = e.detail.player;
 
-    alert(JSON.stringify({colIndex, player}))
-
-    // Update game state.
-      // Update cell with cell-red or cell-black class.
-      // If column filled, then emit event
+    es.dataset.board = JSON.stringify(updateGamestate({ colIndex, player }));
+    // Update cell with cell-red or cell-black class.
+    // If column filled, then emit event
 
     // Check if GameOver, if true then emit event.
   });
