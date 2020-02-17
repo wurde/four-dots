@@ -67,6 +67,14 @@
   text-align: center;
 }
 
+.cell-red {
+  background-color: red;
+}
+
+.cell-black {
+  background-color: black;
+}
+
 .add-dot-btn {
   background-color: #E9F6E9;
   padding: 6px;

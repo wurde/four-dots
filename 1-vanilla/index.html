@@ -9,17 +9,13 @@
 
     <header class="game-header d-flex justify-content-between">
       <h1>Four Dots</h1>
-      <button type="button" class="btn-refresh" onclick="sayHello()">Refresh</button>
+      <button type="button" class="btn-refresh" onclick="restartGame()">Restart</button>
     </header>
 
     <main class="d-flex justify-content-center">
       <table class="board">
         <thead>
           <tr>
-            <!--
-              Gotchas: I have to pass event to have access to `event.target`.
-              This is especially important when trying to dispatch events.
-             -->
             <th><button class="add-dot-btn" onclick="addDot()" data-col-index="1">+</button></th>
             <th><button class="add-dot-btn" onclick="addDot()" data-col-index="2">+</button></th>
             <th><button class="add-dot-btn" onclick="addDot()" data-col-index="3">+</button></th>
@@ -187,7 +183,7 @@
             <td class="cell"></td>
             <td class="cell"></td>
             <td class="cell"></td>
-            <td class="cell"></td>
+            <td class="cell cell-black"></td>
           </tr>
           <tr>
             <td class="cell"></td>
@@ -200,8 +196,8 @@
             <td class="cell"></td>
             <td class="cell"></td>
             <td class="cell"></td>
-            <td class="cell"></td>
-            <td class="cell"></td>
+            <td class="cell cell-red"></td>
+            <td class="cell cell-red"></td>
           </tr>
         </tbody>
       </table>

@@ -2,8 +2,20 @@
  * Define helpers
  */
 
-function sayHello() {
-  alert("Hello");
+function createBoard() {
+  let board = [];
+  for (let i = 0; i < 12; i++) {
+    board.push(new Array(12));
+  }
+  return board;
+}
+
+function restartGame() {
+  const es = document.getElementById("event-stream");
+  es.dataset.board = createBoard();
+
+  const els = Array.from(document.getElementsByClassName("cell"));
+  els.forEach(cell => cell.className = "cell");
 }
 
 function addDot() {
@@ -27,16 +39,15 @@ function addDot() {
 
 function initGameState() {
   const es = document.getElementById("event-stream");
+  es.dataset.currentPlayer = "red";
 
-  let state = {};
-  state["board"] = []
-
-  for (let i = 0; i < 12; i++) {
-    state["board"].push(new Array(12));
-  }
+  es.dataset.board = createBoard();
 
   es.addEventListener("AddDot", e => {
-    e.detail.target.style.backgroundColor = "red";
+    const colIndex = e.detail.colIndex;
+
+    // Update game state.
+    // Update DOM.
   });
 }
 
