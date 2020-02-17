@@ -2,12 +2,11 @@
 <html>
   <head>
     <title>Four Dots</title>
-    <!--
-      GOTCHA: I get confused with <style> element and I forget about <link> element.
-     -->
     <link rel="stylesheet" href="index.css"></link>
   </head>
   <body>
+    <div id="event-stream" style="display:none;"></div>
+
     <header class="game-header d-flex justify-content-between">
       <h1>Four Dots</h1>
       <button type="button" class="btn-refresh" onclick="sayHello()">Refresh</button>
@@ -21,18 +20,18 @@
               Gotchas: I have to pass event to have access to `event.target`.
               This is especially important when trying to dispatch events.
              -->
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="1">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="2">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="3">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="4">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="5">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="6">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="7">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="8">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="9">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="10">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="11">+</button></th>
-            <th><button class="add-dot-btn" onclick="addDot(event)" data-col-index="12">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="1">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="2">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="3">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="4">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="5">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="6">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="7">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="8">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="9">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="10">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="11">+</button></th>
+            <th><button class="add-dot-btn" onclick="addDot()" data-col-index="12">+</button></th>
           </tr>
         </thead>
         <tbody>

@@ -6,11 +6,19 @@ function sayHello() {
   alert("Hello");
 }
 
-function addDot(e) {
-  let target = e.target;
-  let colIndex = target.dataset.colIndex;
-  let buildEvent = new CustomEvent("build", { detail: colIndex });
-  target.dispatchEvent(buildEvent);
+function addDot() {
+  const es = document.getElementById("event-stream");
+  const target = event.target;
+  const colIndex = target.dataset.colIndex;
+
+  let buildEvent = new CustomEvent("AddDot", {
+    detail: {
+      target,
+      colIndex
+    }
+  });
+
+  es.dispatchEvent(buildEvent);
 }
 
 /**
@@ -18,9 +26,8 @@ function addDot(e) {
  */
 
 function initGameState() {
-  /**
-   * Gotchas: I struggled to create a matrix object.
-   */
+  const es = document.getElementById("event-stream");
+
   let state = {};
   state["board"] = []
 
@@ -28,13 +35,13 @@ function initGameState() {
     state["board"].push(new Array(12));
   }
 
-  let btns = document.querySelectorAll(".add-dot-btn");
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].style.border = '1px solid red';
-    btns[i].addEventListener("build", e => {
-      alert(JSON.stringify(e.detail));
-    });
-  }
+  es.addEventListener("AddDot", e => {
+    e.detail.target.style.backgroundColor = "red";
+  });
 }
+
+/**
+ * Wait for DOM to fully load content.
+ */
 
 document.addEventListener("DOMContentLoaded", initGameState);
