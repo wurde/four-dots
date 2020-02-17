@@ -4,7 +4,10 @@
   "description": "Play Four Dots in the browser!",
   "private": true,
   "scripts": {
-    "start:2": "nodemon 2-web-components/server.js"
+    "start:1": "nodemon 1-vanilla/server.js",
+    "start:2": "nodemon 2-web-components/server.js",
+    "start:3": "nodemon 3-polymer/server.js",
+    "start:4": "nodemon 4-stencil/server.js"
   },
   "author": "Andy Bettisworth",
   "license": "MIT",
