@@ -68,11 +68,13 @@ function updateGamestate({ colIndex, player }) {
   let cell = document.querySelector(`.cell[data-col="${colIndex}"][data-row="${rowIndex}"]`)
   cell.classList.add(`cell-${player}`);
 
-  // If column filled, then emit event
+  if (rowIndex == 0) {
+    // Emit ColumnFilled event { colIndex }.
+  }
 }
 
 function checkIfGameOver() {
-  // Check if GameOver, if true then emit event.
+  // Check if GameOver, if true then emit event { winner }.
 }
 
 /**
@@ -94,7 +96,7 @@ function initGameState() {
   });
 
   es.addEventListener("ColumnFilled", e => {
-    // Set AddDotBtn to disabled.
+    // Disable add-bot-btn data-col-index=colIndex
     alert("ColumnFilled");
   })
 
