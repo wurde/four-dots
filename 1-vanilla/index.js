@@ -64,12 +64,19 @@ function updateGamestate({ colIndex, player }) {
 
   let rowIndex = findRowIndex({ board, colIndex });
   board[colIndex][rowIndex] = player;
+  es.dataset.board = JSON.stringify(board);
 
   let cell = document.querySelector(`.cell[data-col="${colIndex}"][data-row="${rowIndex}"]`)
   cell.classList.add(`cell-${player}`);
 
   if (rowIndex == 0) {
-    // Emit ColumnFilled event { colIndex }.
+    es.dispatchEvent(
+      new CustomEvent("ColumnFilled", {
+        detail: {
+          colIndex
+        }
+      })
+    );
   }
 }
 
@@ -96,8 +103,11 @@ function initGameState() {
   });
 
   es.addEventListener("ColumnFilled", e => {
-    // Disable add-bot-btn data-col-index=colIndex
-    alert("ColumnFilled");
+    let colIndex = e.detail.colIndex;
+    let btn = document.querySelector(
+      `.add-dot-btn[data-col-index="${colIndex}"]`
+    );
+    btn.disabled = true;
   })
 
   es.addEventListener("GameOver", e => {
