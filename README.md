@@ -6,10 +6,10 @@ Play Four Dots in the browser!
 
 You can run one of 4 servers:
 
-- Vanilla. This uses vanilla web standards.
-- Web Components. This uses the Web Component standards.
-- Polymer.
-- Stencil. 
+- Vanilla [1]
+- Web Components [2]
+- Polymer [3]
+- Stencil [4]
 
 ```bash
 # Install dependencies
