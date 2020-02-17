@@ -104,3 +104,23 @@
   color: #999;
   cursor: inherit;
 }
+
+.winner-alert {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 200px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FCFBFB;
+  border: 10px double #E3DDD8;
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+}
+
+.winner-player {
+  font-weight: bold;
+}

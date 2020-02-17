@@ -23,6 +23,9 @@ function createBoard() {
 }
 
 function restartGame() {
+  const alert = document.querySelector(".winner-alert");
+  alert.style.visibility = "hidden";
+
   const es = document.getElementById("event-stream");
   const ds = document.getElementById("data-store");
 
@@ -176,6 +179,13 @@ function checkIfGameOver(e) {
   }
 }
 
+function rewardWinner(player) {
+  let alert = document.querySelector(".winner-alert");
+  let alertText = document.querySelector(".winner-player");
+  alertText.textContent = `${player} player wins`;
+  alert.style.visibility = "visible";
+}
+
 /**
  * Initialize game state
  */
@@ -207,8 +217,7 @@ function initGameState() {
     Array.from(document.getElementsByClassName("add-dot-btn"))
     .forEach(btn => btn.disabled = true);
 
-    // Toggle visibility on dismissible WinnerAlert w confetti.
-    alert("GameOver");
+    rewardWinner(e.detail.winner);
   })
 }
 
