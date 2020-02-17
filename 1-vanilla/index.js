@@ -204,7 +204,9 @@ function initGameState() {
   es.addEventListener("DotAdded", checkIfGameOver);
 
   es.addEventListener("GameOver", e => {
-    // Set all AddDotBtns to disabled.
+    Array.from(document.getElementsByClassName("add-dot-btn"))
+    .forEach(btn => btn.disabled = true);
+
     // Toggle visibility on dismissible WinnerAlert w confetti.
     alert("GameOver");
   })
