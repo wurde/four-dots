@@ -95,10 +95,8 @@ function checkIfGameOver(e) {
   let counter = rowIndex + 1;
   while (counter <= 11) {
     let x = board[colIndex][counter];
-    if (x == player) {
-      count++;
-      break;
-    };
+    if (!x || x != player) break;
+    count++;
     counter++;
   }
   if (count == 4) {
@@ -111,19 +109,15 @@ function checkIfGameOver(e) {
   let leftCounter = colIndex - 1;
   while (leftCounter >= 0) {
     let x = board[leftCounter][rowIndex];
-    if (!x) break;
-    if (x == player) {
-      count++;
-    }
+    if (!x || x != player) break;
+    count++;
     leftCounter--;
   }
   let rightCounter = colIndex + 1;
   while (rightCounter <= 11) {
     let x = board[rightCounter][rowIndex];
-    if (!x) break;
-    if (x == player) {
-      count++;
-    }
+    if (!x || x != player) break;
+    count++;
     rightCounter++;
   }
   if (count == 4) {
@@ -132,7 +126,54 @@ function checkIfGameOver(e) {
   }
 
   // Check diagonalLeft
+  count = 1;
+  leftCounter = colIndex - 1;
+  let topCounter = rowIndex - 1;
+  while (leftCounter >= 0 && topCounter >= 0) {
+    let x = board[leftCounter][topCounter];
+    if (!x || x != player) break;
+    count++;
+    leftCounter--;
+    topCounter--;
+  }
+  rightCounter = colIndex + 1;
+  let bottomCounter = rowIndex + 1;
+  while (rightCounter <= 11 && bottomCounter <= 11) {
+    let x = board[rightCounter][bottomCounter];
+    if (!x || x != player) break;
+    count++;
+    rightCounter++;
+    bottomCounter++;
+  }
+  if (count == 4) {
+    dispatch("GameOver", { winner: player });
+    return;
+  }
+
   // Check diagonalRight
+  count = 1;
+  leftCounter = colIndex - 1;
+  bottomCounter = rowIndex + 1;
+  while (leftCounter >= 0 && bottomCounter <= 11) {
+    let x = board[leftCounter][bottomCounter];
+    if (!x || x != player) break;
+    count++;
+    leftCounter--;
+    bottomCounter++;
+  }
+  topCounter = rowIndex - 1;
+  rightCounter = colIndex + 1;
+  while (rightCounter <= 11 && topCounter >= 0) {
+    let x = board[rightCounter][topCounter];
+    if (!x || x != player) break;
+    count++;
+    topCounter--;
+    rightCounter++;
+  }
+  if (count == 4) {
+    dispatch("GameOver", { winner: player });
+    return;
+  }
 }
 
 /**
