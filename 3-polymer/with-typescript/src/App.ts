@@ -19,7 +19,7 @@ export class App extends LitElement {
 
   render() {
     return html`
-      <p>Hello, ${this.name}!</p>
+      <p>Hello, ${this.name}?</p>
     `;
   }
 }

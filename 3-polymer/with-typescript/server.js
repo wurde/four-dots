@@ -21,7 +21,7 @@ const app = express();
  * Mount the middleware
  */
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "public")));
 
 /**
  * Mount the error handlers.

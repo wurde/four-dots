@@ -7,16 +7,18 @@
     "start:1": "nodemon 1-vanilla/server.js",
     "start:2": "nodemon 2-web-components/server.js",
     "start:3": "nodemon 3-polymer/without-typescript/server.js",
-    "build:3:ts": "tsc --project 3-polymer/with-typescript",
-    "start:3:ts": "nodemon --watch 3-polymer/with-typescript/public --exec 'npm run build:3:ts && node 3-polymer/with-typescript/server.js",
+    "start:3:ts": "npm run start --prefix 3-polymer/with-typescript",
     "start:4": "nodemon 4-stencil/server.js"
   },
   "author": "Andy Bettisworth",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "lit-element": "^2.2.1",
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.2",
-    "ts-node": "^8.6.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   }
 }
