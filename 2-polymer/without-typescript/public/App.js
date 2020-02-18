@@ -15,9 +15,14 @@ import {
  */
 
 class App extends LitElement {
+  constructor() {
+    super();
+    this.currentPlayer = "blue";
+  }
+
   static get properties() {
     return {
-      name: { type: String }
+      currentPlayer: { type: String }
     };
   }
 
@@ -29,6 +34,12 @@ class App extends LitElement {
     `;
   }
 
+  /**
+   * Implement `render` to define a template for your element.
+   *
+   * You must provide an implementation of `render` for any element
+   * that uses LitElement as a base class.
+   */
   render() {
     /**
      * `render` must return a lit-html `TemplateResult`.
@@ -37,7 +48,7 @@ class App extends LitElement {
      * with the `html` helper function:
      */
     return html`
-      <p>Hello, <span class="mood">World</span>!</p>
+      <p>Hello, <span class="mood">${this.currentPlayer}</span>!</p>
     `;
   }
 }

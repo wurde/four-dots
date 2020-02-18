@@ -4,7 +4,7 @@
   "description": "Implementation of Four Dots with LitElement (and TypeScript)",
   "private": true,
   "scripts": {
-    "build": "tsc --project . && webpack-cli --mode development --entry ./dist/index.js --output ./public/index.js",
+    "build": "tsc --project . && webpack-cli --mode production --entry ./dist/index.js --output ./public/index.js",
     "start": "nodemon --watch src --ext ts,js --exec 'npm run build && node server.js'"
   },
   "author": "Andy Bettisworth",
