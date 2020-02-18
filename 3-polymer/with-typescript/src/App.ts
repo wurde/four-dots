@@ -2,7 +2,12 @@
  * Dependencies
  */
 
-import { LitElement, html, property, customElement } from "lit-element";
+import {
+  LitElement,
+  html,
+  property,
+  customElement
+} from "lit-element";
 
 /**
  * Define and export the App.
