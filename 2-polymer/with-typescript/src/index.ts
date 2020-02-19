@@ -10,7 +10,7 @@ import "./App.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   // Initialize the application.
-  const app = document.createElement("pf-app");
+  const app = document.createElement("four-dots-app");
 
   // Mount the application to the DOM.
   document.getElementById("app").replaceWith(app);
