@@ -9,6 +9,9 @@ import {
   customElement
 } from "lit-element";
 
+import "./components/refresh-button";
+import "./components/winner-alert";
+
 /**
  * Define and export the App.
  *
@@ -21,20 +24,23 @@ export class FourDotsApp extends LitElement {
 
   render() {
     return html`
-      <pf-container>
-        <pf-row>
-          <pf-column>
-            <event-stream />
-            <data-store />
+      <event-stream />
+      <data-store />
 
-            <span>Four Dots</span>
+      <pf-flex-container style="justify-content: center;">
+        <pf-flex-item>
+          <pf-header>
+            <pf-h1>Four Dots</pf-h1>
+            <refresh-button />
+          </pf-header>
+        </pf-flex-item>
 
-            <winner-alert />
-            <game-header />
-            <main-content />
-          </pf-column>
-        </pf-row>
-      </pf-container>
+        <pf-flex-item>
+          <winner-alert />
+          <game-header />
+          <main-content />
+        </pf-flex-item>
+      </pf-flex-container>
     `;
   }
 }
