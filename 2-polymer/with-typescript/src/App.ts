@@ -9,6 +9,11 @@ import {
   customElement
 } from "lit-element";
 
+import "./event-stream";
+import "./data-store";
+
+import "./layouts/four-dot-grid";
+
 import "./components/refresh-button";
 import "./components/winner-alert";
 
@@ -27,20 +32,17 @@ export class FourDotsApp extends LitElement {
       <event-stream />
       <data-store />
 
-      <pf-flex-container style="justify-content: center;">
-        <pf-flex-item>
-          <pf-header>
-            <pf-h1>Four Dots</pf-h1>
-            <refresh-button />
-          </pf-header>
-        </pf-flex-item>
+      <four-dot-grid>
+        <four-dot-header />
+        <pf-header>
+          <pf-h1>Four Dots</pf-h1>
+          <refresh-button myProp="blahblah" />
+        </pf-header>
 
-        <pf-flex-item>
-          <winner-alert />
-          <game-header />
-          <main-content />
-        </pf-flex-item>
-      </pf-flex-container>
+        <winner-alert />
+        <game-header />
+        <main-content />
+      </four-dot-grid>
     `;
   }
 }

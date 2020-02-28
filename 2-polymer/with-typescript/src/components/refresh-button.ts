@@ -1,7 +1,9 @@
-import { LitElement, html, css, customElement } from 'lit-element';
+import { LitElement, html, css, customElement, property } from 'lit-element';
 
 @customElement("refresh-button")
 export class RefreshButton extends LitElement {
+  @property({ type: String, attribute: true }) backgroundColor = "green";
+
   static get styles() {
     return css`
       :host {
@@ -10,6 +12,7 @@ export class RefreshButton extends LitElement {
         border-radius: 5px;
         outline: none;
         cursor: pointer;
+        color: var(--themeColor);
       }
       :host:hover {
         background-color: #ddd;
@@ -22,30 +25,35 @@ export class RefreshButton extends LitElement {
     `;
   }
 
+  // All lifecycle methods need to call the super method.
+  connectedCallback() {
+    super.connectedCallback()
+    console.log("RefreshButton.connectedCallback");
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback()
+    console.log("RefreshButton.disconnectedCallback");
+  }
+
+  adoptedCallback() {
+    super.adoptedCallback()
+    console.log("RefreshButton.adoptedCallback");
+  }
+
+  attributeChangedCallback() {
+    super.attributeChangedCallback()
+    console.log("RefreshButton.attributeChangedCallback");
+  }
+
   restartGame() {
     alert("TODO restartGame()");
-    // const alert = document.querySelector(".winner-alert");
-    // alert.style.visibility = "hidden";
-
-    // const es = document.getElementById("event-stream");
-    // const ds = document.getElementById("data-store");
-
-    // ds.dataset.currentPlayer = "blue";
-    // ds.dataset.board = JSON.stringify(createBoard());
-
-    // Array.from(document.getElementsByClassName("cell")).forEach(
-    //   cell => (cell.className = "cell")
-    // );
-
-    // Array.from(document.getElementsByClassName("add-dot-btn")).forEach(
-    //   btn => (btn.disabled = false)
-    // );
   }
 
   render() {
     return html`
       <button type="button" @click="${this.restartGame}">
-        Restart
+        Restart ${this.backgroundColor}
       </button>
     `;
   }
