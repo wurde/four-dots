@@ -5,8 +5,8 @@ import {
   customElement
 } from "lit-element";
 
-import "./components/refresh-button";
-import "./components/winner-alert";
+import "./components/header";
+import "./components/board";
 
 @customElement("four-dots-app")
 export class FourDotsApp extends LitElement {
@@ -15,15 +15,8 @@ export class FourDotsApp extends LitElement {
   render() {
     return html`
       <four-dot-grid>
-        <four-dot-header />
-        <pf-header>
-          <pf-h1>Four Dots</pf-h1>
-          <refresh-button myProp="blahblah" />
-        </pf-header>
-
-        <winner-alert />
-        <game-header />
-        <main-content />
+        <four-dot-header></four-dot-header>
+        <four-dot-board></four-dot-board>
       </four-dot-grid>
     `;
   }
