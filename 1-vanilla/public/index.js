@@ -1,4 +1,4 @@
-
+/**
  * Define helpers
  */
 
@@ -186,7 +186,7 @@ function rewardWinner(player) {
   alert.style.visibility = "visible";
 }
 
-
+/**
  * Initialize game state
  */
 
@@ -221,7 +221,7 @@ function initGameState() {
   })
 }
 
-
+/**
  * Wait for DOM to fully load content.
  */
 

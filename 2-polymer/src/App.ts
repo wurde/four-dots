@@ -28,4 +28,3 @@ export class FourDotsApp extends LitElement {
     `;
   }
 }
-
