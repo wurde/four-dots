@@ -7,6 +7,7 @@ export class Header extends LitElement {
       header {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 10px;
       }
 
       button {

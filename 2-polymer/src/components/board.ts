@@ -1,6 +1,7 @@
 import { LitElement, html, css, property, customElement } from "lit-element";
 
 import "./add-dot-btn";
+import "./table-row";
 
 @customElement("four-dot-board")
 export class Board extends LitElement {
@@ -8,11 +9,28 @@ export class Board extends LitElement {
 
   static get styles() {
     return css`
-      main {
-        display: grid;
-        grid-template-columns: 10% auto 10%;
+      * {
+        box-sizing: border-box;
       }
-    `
+
+      main {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        border-spacing: 0px;
+      }
+      thead > tr {
+        display: flex;
+        justify-content: space-between;
+      }
+      tbody {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+    `;
   }
 
   render() {
@@ -31,6 +49,11 @@ export class Board extends LitElement {
             </tr>
           </thead>
           <tbody>
+            ${this.columns.map(() => {
+              return html`
+                <table-row columns=${JSON.stringify(this.columns)}></table-row>
+              `;
+            })}
           </tbody>
         </table>
       </main>
