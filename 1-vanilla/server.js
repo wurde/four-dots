@@ -9,7 +9,7 @@ const path = require('path');
  * Constants
  */
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 /**
  * Initialize the App.
