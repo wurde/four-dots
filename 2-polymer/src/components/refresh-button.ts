@@ -25,27 +25,6 @@ export class RefreshButton extends LitElement {
     `;
   }
 
-  // All lifecycle methods need to call the super method.
-  connectedCallback() {
-    super.connectedCallback()
-    console.log("RefreshButton.connectedCallback");
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
-    console.log("RefreshButton.disconnectedCallback");
-  }
-
-  adoptedCallback() {
-    super.adoptedCallback()
-    console.log("RefreshButton.adoptedCallback");
-  }
-
-  attributeChangedCallback() {
-    super.attributeChangedCallback()
-    console.log("RefreshButton.attributeChangedCallback");
-  }
-
   restartGame() {
     alert("TODO restartGame()");
   }

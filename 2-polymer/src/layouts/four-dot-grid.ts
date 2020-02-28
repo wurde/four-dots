@@ -1,11 +1,11 @@
 import { LitElement, html, css, customElement } from 'lit-element';
 
 @customElement("four-dot-grid")
-export class FourDotGrid extends PrefabGridContainer {
+export class FourDotGrid extends LitElement {
   static get styles() {
-    super.styles();
     return css`
       :host {
+        display: grid;
         grid-template-columns: auto;
         grid-template-rows: auto;
         grid-area: "header"
@@ -33,5 +33,9 @@ export class FourDotGrid extends PrefabGridContainer {
         }
       }
     `;
+  }
+
+  render() {
+    return html``
   }
 }

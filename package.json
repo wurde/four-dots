@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "start:1": "nodemon 1-vanilla/server.js",
-    "start:2": "nodemon 2-polymer/without-typescript/server.js",
-    "start:2:ts": "npm run start --prefix 2-polymer/with-typescript"
+    "start:2": "npm run start --prefix 2-polymer"
   },
   "author": "Andy Bettisworth",
   "license": "MIT",

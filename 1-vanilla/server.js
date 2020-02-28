@@ -1,29 +1,29 @@
-/**
+
  * Dependencies
  */
 
 const express = require('express');
 const path = require('path');
 
-/**
+
  * Constants
  */
 
 const port = process.env.PORT || 3000;
 
-/**
+
  * Initialize the App.
  */
 
 const app = express();
 
-/**
+
  * Mount the middleware
  */
 
 app.use(express.static(path.join(__dirname, "public")));
 
-/**
+
  * Mount the error handlers.
  */
 
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-/**
+
  * Start the server.
  */
 
