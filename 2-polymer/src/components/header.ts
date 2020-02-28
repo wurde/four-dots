@@ -4,7 +4,9 @@ import { LitElement, html, customElement } from "lit-element";
 export class Header extends LitElement {
   render() {
     return html`
-      Header
-    `
+      <header>
+        <h1>Four Dots</h1>
+      </header>
+    `;
   }
 }
