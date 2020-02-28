@@ -7,7 +7,6 @@
     "lib": ["ES2017", "DOM"],
     "moduleResolution": "node",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
