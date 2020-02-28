@@ -49,9 +49,9 @@ export class Board extends LitElement {
             </tr>
           </thead>
           <tbody>
-            ${this.columns.map(() => {
+            ${this.columns.map(i => {
               return html`
-                <table-row columns=${JSON.stringify(this.columns)}></table-row>
+                <table-row columns=${JSON.stringify(this.columns)} rowIndex="${i}"></table-row>
               `;
             })}
           </tbody>

@@ -2,7 +2,8 @@ import { LitElement, html, css, property, customElement } from "lit-element";
 
 @customElement("table-row")
 export class TableRow extends LitElement {
-  @property({ type: Array}) columns;
+  @property({ type: Array }) columns;
+  @property({ type: Number }) rowIndex;
 
   static get styles() {
     return css`
@@ -24,10 +25,10 @@ export class TableRow extends LitElement {
   render() {
     return html`
       <tr>
-        ${this.columns.map(() => {
+        ${this.columns.map(i => {
           return html`
-            <td></td>
-          `
+            <td colIndex="${i}" rowIndex="${this.rowIndex}"></td>
+          `;
         })}
       </tr>
     `;
