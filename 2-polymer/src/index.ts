@@ -5,6 +5,7 @@ import {
   customElement
 } from "lit-element";
 
+import "./event-stream";
 import "./components/winneralert";
 import "./components/header";
 import "./components/board";
@@ -14,6 +15,14 @@ export class FourDotsApp extends LitElement {
   @property({ type: Array }) board = this.createBoard();
   @property({ type: String }) currentPlayer = "blue";
   @property({ type: String }) visibility = "hidden";
+
+  constructor() {
+    super();
+
+    this.addEventListener("change-player", (e: CustomEvent) => {
+      this.currentPlayer = e.detail.currentPlayer
+    });
+  }
 
   createBoard() {
     const size = 12;
@@ -32,9 +41,15 @@ export class FourDotsApp extends LitElement {
 
   render() {
     return html`
-      <four-dot-winneralert visibility="${this.visibility}"></four-dot-winneralert>
+      <event-stream></event-stream>
+      <four-dot-winneralert
+        visibility="${this.visibility}"
+      ></four-dot-winneralert>
       <four-dot-header .restartGame="${this.restartGame}"></four-dot-header>
-      <four-dot-board board=${JSON.stringify(this.board)}></four-dot-board>
+      <four-dot-board
+        board=${JSON.stringify(this.board)}
+        currentPlayer="${this.currentPlayer}"
+      ></four-dot-board>
     `;
   }
 }

@@ -5,22 +5,20 @@ export class TableRow extends LitElement {
   @property({ type: Array }) columns;
   @property({ type: Number }) rowIndex;
 
-  static get styles() {
-    return css`
-      * {
-        box-sizing: border-box;
-      }
+  static styles = css`
+    * {
+      box-sizing: border-box;
+    }
 
-      td {
-        width: 45px;
-        max-width: 45px;
-        height: 45px;
-        max-height: 45px;
-        border: 1px solid #000;
-        text-align: center;
-      }
-    `;
-  }
+    td {
+      width: 45px;
+      max-width: 45px;
+      height: 45px;
+      max-height: 45px;
+      border: 1px solid #000;
+      text-align: center;
+    }
+  `;
 
   render() {
     return html`

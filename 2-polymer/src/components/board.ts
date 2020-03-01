@@ -5,44 +5,54 @@ import "./table-row";
 
 @customElement("four-dot-board")
 export class Board extends LitElement {
-  @property({ type: Array }) columns = Array.from(Array(12), (x,i) => i);
+  @property({ type: Array }) columns = Array.from(Array(12), (x, i) => i);
+  @property({ type: String }) currentPlayer;
+  @property({ type: Number }) counter = 0;
 
-  static get styles() {
-    return css`
-      * {
-        box-sizing: border-box;
-      }
+  static styles = css`
+    * {
+      box-sizing: border-box;
+    }
 
-      main {
-        display: flex;
-        justify-content: center;
-      }
+    main {
+      display: flex;
+      justify-content: center;
+    }
 
-      table {
-        border-spacing: 0px;
-      }
-      thead > tr {
-        display: flex;
-        justify-content: space-between;
-      }
-      tbody {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-    `;
+    table {
+      border-spacing: 0px;
+    }
+    thead > tr {
+      display: flex;
+      justify-content: space-between;
+    }
+    tbody {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  `;
+
+  setCurrentPlayer(name) {
+    this.currentPlayer = name;
+    alert("NOW");
   }
 
   render() {
     return html`
       <main>
+        ${this.currentPlayer}
         <table>
           <thead>
             <tr>
               ${this.columns.map(x => {
                 return html`
                   <th>
-                    <add-dot-btn colIndex=${x}></add-dot-btn>
+                    <add-dot-btn
+                      colIndex="${x}"
+                      currentPlayer="${this.currentPlayer}"
+                      .setCurrentPlayer="${this.setCurrentPlayer}"
+                    ></add-dot-btn>
                   </th>
                 `;
               })}
@@ -51,7 +61,10 @@ export class Board extends LitElement {
           <tbody>
             ${this.columns.map(i => {
               return html`
-                <table-row columns=${JSON.stringify(this.columns)} rowIndex="${i}"></table-row>
+                <table-row
+                  rowIndex="${i}"
+                  columns=${JSON.stringify(this.columns)}
+                ></table-row>
               `;
             })}
           </tbody>

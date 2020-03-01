@@ -4,26 +4,24 @@ import { LitElement, html, css, customElement, property } from 'lit-element';
 export class RefreshButton extends LitElement {
   @property({ type: String, attribute: true }) backgroundColor = "green";
 
-  static get styles() {
-    return css`
-      :host {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        outline: none;
-        cursor: pointer;
-        color: var(--themeColor);
-      }
-      :host:hover {
-        background-color: #ddd;
-        border: 1px solid #ddd;
-      }
-      :host:active {
-        background-color: #999;
-        border: 1px solid #999;
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      color: var(--themeColor);
+    }
+    :host:hover {
+      background-color: #ddd;
+      border: 1px solid #ddd;
+    }
+    :host:active {
+      background-color: #999;
+      border: 1px solid #999;
+    }
+  `;
 
   restartGame() {
     alert("TODO restartGame()");
