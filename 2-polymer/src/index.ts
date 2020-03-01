@@ -1,6 +1,29 @@
-import "./App.js";
+import {
+  LitElement,
+  html,
+  property,
+  customElement
+} from "lit-element";
 
-window.addEventListener("DOMContentLoaded", () => {
-  const app = document.createElement("four-dots-app");
-  document.getElementById("app").replaceWith(app);
-});
+import "./components/winneralert";
+import "./components/header";
+import "./components/board";
+
+@customElement("four-dots-app")
+export class FourDotsApp extends LitElement {
+  @property({ type: Array }) board = [];
+  @property({ type: String }) currentPlayer = "red";
+
+  restartGame() {
+    this.currentPlayer = "red";
+    alert("BLAH")
+  }
+
+  render() {
+    return html`
+      <four-dot-winneralert></four-dot-winneralert>
+      <four-dot-header restartGame="${this.restartGame}"></four-dot-header>
+      <four-dot-board></four-dot-board>
+    `;
+  }
+}

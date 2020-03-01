@@ -1,7 +1,9 @@
-import { LitElement, html, css, customElement } from "lit-element";
+import { LitElement, html, css, property, customElement } from "lit-element";
 
 @customElement("four-dot-header")
 export class Header extends LitElement {
+  @property({ type: Function }) restartGame;
+
   static get styles() {
     return css`
       header {
@@ -26,10 +28,6 @@ export class Header extends LitElement {
         border: 1px solid #999;
       }
     `;
-  }
-
-  restartGame() {
-    alert("restart GAME")
   }
 
   render() {
