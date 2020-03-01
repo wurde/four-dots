@@ -1,4 +1,6 @@
 export function createBoard(val) {
+  console.log('createBoard', val);
+
   const size = 12;
   let board = [];
 

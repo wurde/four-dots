@@ -20,38 +20,39 @@ export class FourDotsApp extends LitElement {
   constructor() {
     super();
 
+    this.addEventListener("restart-game", this.restartGame);
     this.addEventListener("add-dot", this.updateGameState);
     this.addEventListener("change-player", this.changePlayer);
   }
 
+  restartGame() {
+    this.currentPlayer = "blue";
+    this.visibility = "hidden";
+    this.board = createBoard("green");
+  }
+
   updateGameState(e: CustomEvent) {
-    console.log(e.detail);
+    console.log("updateGameState", e.detail);
   }
 
   changePlayer(e: CustomEvent) {
     this.currentPlayer = e.detail.currentPlayer;
   }
 
-  restartGame() {
-    alert("restartGame");
-    this.currentPlayer = "blue";
-    this.visibility = "hidden";
-
-    let newBoard = createBoard("green");
-    console.log(newBoard)
-    this.board = newBoard;
-  }
-
   render() {
     return html`
-      <four-dot-winneralert
-        visibility="${this.visibility}"
-      ></four-dot-winneralert>
-      <four-dot-header .restartGame="${this.restartGame}"></four-dot-header>
-      <four-dot-board
-        board=${JSON.stringify(this.board)}
-        currentPlayer="${this.currentPlayer}"
-      ></four-dot-board>
+      <div>
+        <four-dot-winneralert
+          visibility="${this.visibility}"
+        ></four-dot-winneralert>
+
+        <four-dot-header></four-dot-header>
+
+        <four-dot-board
+          board=${JSON.stringify(this.board)}
+          currentPlayer="${this.currentPlayer}"
+        ></four-dot-board>
+      </div>
     `;
   }
 }
