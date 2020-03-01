@@ -213,7 +213,7 @@ const X=e=>t=>"function"==typeof t?((e,t)=>(window.customElements.define(e,t),t)
       background-color: #999;
       border: 1px solid #999;
     }
-  `,ue=he([X("four-dot-header")],ue);var pe=function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(i<3?n(o):i>3?n(t,r,o):n(t,r))||o);return i>3&&o&&Object.defineProperty(t,r,o),o};let fe=class extends ie{addDot(){this.dispatchEvent(new CustomEvent("add-dot",{bubbles:!0,composed:!0,detail:{currentPlayer:this.currentPlayer,colIndex:this.colIndex}})),this.dispatchEvent(new CustomEvent("change-player",{bubbles:!0,composed:!0,detail:{currentPlayer:"blue"==this.currentPlayer?"black":"blue"}}))}render(){return M`
+  `,ue=he([X("four-dot-header")],ue);var pe=function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(i<3?n(o):i>3?n(t,r,o):n(t,r))||o);return i>3&&o&&Object.defineProperty(t,r,o),o};let fe=class extends ie{addDot(){this.dispatchEvent(new CustomEvent("add-dot",{bubbles:!0,composed:!0,detail:{currentPlayer:this.currentPlayer,colIndex:this.colIndex}})),this.dispatchEvent(new CustomEvent("change-player",{bubbles:!0,composed:!0}))}render(){return M`
       <button @click="${this.addDot}">+</button>
     `}};fe.styles=se`
     button {
@@ -294,10 +294,10 @@ const ye=new WeakMap,me=n(e=>t=>{if(!(t instanceof P)||t instanceof O||"class"!=
         <table>
           <thead>
             <tr>
-              ${this.board[0].map(e=>M`
+              ${this.board[0].map((e,t)=>M`
                   <th>
                     <add-dot-btn
-                      colIndex="${e}"
+                      colIndex="${t}"
                       currentPlayer="${this.currentPlayer}"
                       .setCurrentPlayer="${this.setCurrentPlayer}"
                     ></add-dot-btn>
@@ -337,7 +337,7 @@ const ye=new WeakMap,me=n(e=>t=>{if(!(t instanceof P)||t instanceof O||"class"!=
       justify-content: center;
       flex-direction: column;
     }
-  `,_e([Z({type:Array})],ve.prototype,"board",void 0),_e([Z({type:String})],ve.prototype,"currentPlayer",void 0),_e([Z({type:Number})],ve.prototype,"counter",void 0),ve=_e([X("four-dot-board")],ve),r.d(t,"FourDotsApp",(function(){return we}));var Se=function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(i<3?n(o):i>3?n(t,r,o):n(t,r))||o);return i>3&&o&&Object.defineProperty(t,r,o),o};let we=class extends ie{constructor(){super(),this.board=oe(),this.currentPlayer="blue",this.visibility="hidden",this.addEventListener("restart-game",this.restartGame),this.addEventListener("add-dot",this.updateGameState),this.addEventListener("change-player",this.changePlayer)}restartGame(){this.currentPlayer="blue",this.visibility="hidden",this.board=oe()}updateGameState(e){console.log("updateGameState",e.detail)}changePlayer(e){this.currentPlayer=e.detail.currentPlayer}render(){return M`
+  `,_e([Z({type:Array})],ve.prototype,"board",void 0),_e([Z({type:String})],ve.prototype,"currentPlayer",void 0),_e([Z({type:Number})],ve.prototype,"counter",void 0),ve=_e([X("four-dot-board")],ve),r.d(t,"FourDotsApp",(function(){return we}));var Se=function(e,t,r,s){var n,i=arguments.length,o=i<3?t:null===s?s=Object.getOwnPropertyDescriptor(t,r):s;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,r,s);else for(var a=e.length-1;a>=0;a--)(n=e[a])&&(o=(i<3?n(o):i>3?n(t,r,o):n(t,r))||o);return i>3&&o&&Object.defineProperty(t,r,o),o};let we=class extends ie{constructor(){super(),this.board=oe(),this.currentPlayer="blue",this.visibility="hidden",this.addEventListener("restart-game",this.restartGame),this.addEventListener("add-dot",this.updateGameState),this.addEventListener("change-player",this.changePlayer)}restartGame(){this.currentPlayer="blue",this.visibility="hidden",this.board=oe()}updateGameState(e){const{colIndex:t,player:r}=e.detail;console.log("updateGameState",t,r)}changePlayer(){this.currentPlayer="blue"==this.currentPlayer?"black":"blue"}render(){return M`
       <div>
         <four-dot-winneralert
           visibility="${this.visibility}"

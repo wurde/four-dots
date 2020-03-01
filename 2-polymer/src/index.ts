@@ -32,11 +32,14 @@ export class FourDotsApp extends LitElement {
   }
 
   updateGameState(e: CustomEvent) {
-    console.log("updateGameState", e.detail);
+    const { colIndex, player } = e.detail
+
+    console.log("updateGameState", colIndex, player);
+    // this.board[rowIndex][colIndex] = player;
   }
 
-  changePlayer(e: CustomEvent) {
-    this.currentPlayer = e.detail.currentPlayer;
+  changePlayer() {
+    this.currentPlayer = this.currentPlayer == "blue" ? "black" : "blue";
   }
 
   render() {

@@ -53,10 +53,7 @@ export class AddDotBtn extends LitElement {
     this.dispatchEvent(
       new CustomEvent("change-player", {
         bubbles: true,
-        composed: true,
-        detail: {
-          currentPlayer: this.currentPlayer == "blue" ? "black" : "blue"
-        }
+        composed: true
       })
     );
   }

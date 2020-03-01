@@ -44,11 +44,11 @@ export class Board extends LitElement {
         <table>
           <thead>
             <tr>
-              ${this.board[0].map(x => {
+              ${this.board[0].map((x, i) => {
                 return html`
                   <th>
                     <add-dot-btn
-                      colIndex="${x}"
+                      colIndex="${i}"
                       currentPlayer="${this.currentPlayer}"
                       .setCurrentPlayer="${this.setCurrentPlayer}"
                     ></add-dot-btn>
