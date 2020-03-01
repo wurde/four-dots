@@ -1,11 +1,9 @@
-export function createBoard(val) {
-  console.log('createBoard', val);
-
+export function createBoard() {
   const size = 12;
   let board = [];
 
   for (let i = 0; i < size; i++) {
-    board.push(new Array(size).fill(val));
+    board.push(new Array(size));
   }
 
   return board;

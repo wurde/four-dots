@@ -38,25 +38,24 @@ export class Board extends LitElement {
     alert("NOW");
   }
 
-  // TODO action bar
-  // ${this.columns.map(x => {
-  //   return html`
-  //     <th>
-  //       <add-dot-btn
-  //         colIndex="${x}"
-  //         currentPlayer="${this.currentPlayer}"
-  //         .setCurrentPlayer="${this.setCurrentPlayer}"
-  //       ></add-dot-btn>
-  //     </th>
-  //   `;
-  // })}
-
   render() {
     return html`
       <main>
         <table>
           <thead>
-            <tr></tr>
+            <tr>
+              ${this.board[0].map(x => {
+                return html`
+                  <th>
+                    <add-dot-btn
+                      colIndex="${x}"
+                      currentPlayer="${this.currentPlayer}"
+                      .setCurrentPlayer="${this.setCurrentPlayer}"
+                    ></add-dot-btn>
+                  </th>
+                `;
+              })}
+            </tr>
           </thead>
           <tbody>
             ${this.board.map((cols, i) => {

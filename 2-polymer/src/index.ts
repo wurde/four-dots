@@ -13,7 +13,7 @@ import "./components/board";
 
 @customElement("four-dots-app")
 export class FourDotsApp extends LitElement {
-  @property({ type: Array }) board = createBoard("blue");
+  @property({ type: Array }) board = createBoard();
   @property({ type: String }) currentPlayer = "blue";
   @property({ type: String }) visibility = "hidden";
 
@@ -28,7 +28,7 @@ export class FourDotsApp extends LitElement {
   restartGame() {
     this.currentPlayer = "blue";
     this.visibility = "hidden";
-    this.board = createBoard("green");
+    this.board = createBoard();
   }
 
   updateGameState(e: CustomEvent) {
