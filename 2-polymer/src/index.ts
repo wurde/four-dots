@@ -5,7 +5,6 @@ import {
   customElement
 } from "lit-element";
 
-import "./event-stream";
 import "./components/winneralert";
 import "./components/header";
 import "./components/board";
@@ -41,7 +40,6 @@ export class FourDotsApp extends LitElement {
 
   render() {
     return html`
-      <event-stream></event-stream>
       <four-dot-winneralert
         visibility="${this.visibility}"
       ></four-dot-winneralert>
