@@ -40,13 +40,25 @@ export class AddDotBtn extends LitElement {
   `;
 
   addDot() {
-    this.dispatchEvent(new CustomEvent("change-player", {
-      bubbles: true,
-      composed: true,
-      detail: {
-        currentPlayer: this.currentPlayer == "blue" ? "black" : "blue"
-      }
-    }));
+    this.dispatchEvent(
+      new CustomEvent("add-dot", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          currentPlayer: this.currentPlayer,
+          colIndex: this.colIndex
+        }
+      })
+    );
+    this.dispatchEvent(
+      new CustomEvent("change-player", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          currentPlayer: this.currentPlayer == "blue" ? "black" : "blue"
+        }
+      })
+    );
   }
 
   render() {

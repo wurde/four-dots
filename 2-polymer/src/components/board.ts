@@ -5,7 +5,7 @@ import "./table-row";
 
 @customElement("four-dot-board")
 export class Board extends LitElement {
-  @property({ type: Array }) columns = Array.from(Array(12), (x, i) => i);
+  @property({ type: Array }) board;
   @property({ type: String }) currentPlayer;
   @property({ type: Number }) counter = 0;
 
@@ -38,32 +38,32 @@ export class Board extends LitElement {
     alert("NOW");
   }
 
+  // TODO action bar
+  // ${this.columns.map(x => {
+  //   return html`
+  //     <th>
+  //       <add-dot-btn
+  //         colIndex="${x}"
+  //         currentPlayer="${this.currentPlayer}"
+  //         .setCurrentPlayer="${this.setCurrentPlayer}"
+  //       ></add-dot-btn>
+  //     </th>
+  //   `;
+  // })}
+
   render() {
     return html`
       <main>
-        ${this.currentPlayer}
         <table>
           <thead>
-            <tr>
-              ${this.columns.map(x => {
-                return html`
-                  <th>
-                    <add-dot-btn
-                      colIndex="${x}"
-                      currentPlayer="${this.currentPlayer}"
-                      .setCurrentPlayer="${this.setCurrentPlayer}"
-                    ></add-dot-btn>
-                  </th>
-                `;
-              })}
-            </tr>
+            <tr></tr>
           </thead>
           <tbody>
-            ${this.columns.map(i => {
+            ${this.board.map((cols, i) => {
               return html`
                 <table-row
                   rowIndex="${i}"
-                  columns=${JSON.stringify(this.columns)}
+                  columns=${JSON.stringify(cols)}
                 ></table-row>
               `;
             })}

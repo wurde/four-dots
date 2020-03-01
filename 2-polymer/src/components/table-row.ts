@@ -1,4 +1,5 @@
 import { LitElement, html, css, property, customElement } from "lit-element";
+import { classMap } from "lit-html/directives/class-map";
 
 @customElement("table-row")
 export class TableRow extends LitElement {
@@ -18,14 +19,27 @@ export class TableRow extends LitElement {
       border: 1px solid #000;
       text-align: center;
     }
+
+    .cell-blue {
+      background-color: #71acda;
+    }
+
+    .cell-black {
+      background-color: black;
+    }
   `;
 
   render() {
     return html`
       <tr>
-        ${this.columns.map(i => {
+        ${this.columns.map((data, i) => {
           return html`
-            <td colIndex="${i}" rowIndex="${this.rowIndex}"></td>
+            <td
+              class=${classMap({
+                "cell-blue": data == "blue",
+                "cell-black": data == "black"
+              })}
+            ></td>
           `;
         })}
       </tr>
