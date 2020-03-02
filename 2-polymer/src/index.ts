@@ -14,6 +14,7 @@ import "./components/board";
 
 @customElement("four-dots-app")
 export class FourDotsApp extends LitElement {
+  @property({ type: Array }) actionbar = new Array(12).fill(null);
   @property({ type: Array }) board = createBoard();
   @property({ type: String }) currentPlayer = "blue";
   @property({ type: String }) visibility = "hidden";
@@ -33,14 +34,22 @@ export class FourDotsApp extends LitElement {
   }
 
   updateGameState(e: CustomEvent) {
-    const { colIndex, player } = e.detail
+    const { colIndex, player } = e.detail;
 
     const rowIndex = findNextRow(this.board, colIndex);
     this.board[rowIndex][colIndex] = player;
+
+    if (rowIndex == 0) {
+      this.columnFilled(colIndex);
+    }
   }
 
   changePlayer() {
     this.currentPlayer = this.currentPlayer == "blue" ? "black" : "blue";
+  }
+
+  columnFilled(colIndex) {
+    this.actionbar[colIndex] = "disabled";
   }
 
   render() {
@@ -54,6 +63,7 @@ export class FourDotsApp extends LitElement {
 
         <four-dot-board
           board=${JSON.stringify(this.board)}
+          actionbar="${JSON.stringify(this.actionbar)}"
           currentPlayer="${this.currentPlayer}"
         ></four-dot-board>
       </div>

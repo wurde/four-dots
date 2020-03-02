@@ -2,6 +2,7 @@ import { LitElement, html, css, property, customElement } from "lit-element";
 
 @customElement("add-dot-btn")
 export class AddDotBtn extends LitElement {
+  @property({ type: Boolean }) disabled;
   @property({ type: Number }) colIndex;
   @property({ type: String }) currentPlayer;
   @property({ type: Function }) setCurrentPlayer;
@@ -60,7 +61,7 @@ export class AddDotBtn extends LitElement {
 
   render() {
     return html`
-      <button @click="${this.addDot}">+</button>
+      <button @click="${this.addDot}" ?disabled="${this.disabled}">+</button>
     `;
   }
 }

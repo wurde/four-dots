@@ -5,6 +5,7 @@ import "./table-row";
 
 @customElement("four-dot-board")
 export class Board extends LitElement {
+  @property({ type: Array }) actionbar;
   @property({ type: Array }) board;
   @property({ type: String }) currentPlayer;
   @property({ type: Number }) counter = 0;
@@ -44,13 +45,14 @@ export class Board extends LitElement {
         <table>
           <thead>
             <tr>
-              ${this.board[0].map((x, i) => {
+              ${this.actionbar.map((x, i) => {
                 return html`
                   <th>
                     <add-dot-btn
                       colIndex="${i}"
                       currentPlayer="${this.currentPlayer}"
                       .setCurrentPlayer="${this.setCurrentPlayer}"
+                      ?disabled="${x}"
                     ></add-dot-btn>
                   </th>
                 `;
