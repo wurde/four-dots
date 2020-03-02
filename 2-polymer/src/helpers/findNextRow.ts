@@ -1,18 +1,14 @@
-// function findNextRow({ board, colIndex }) {
-//   let colLength = board[colIndex].length;
-//   let rowIndex = 0;
+export function findNextRow(board, colIndex) {
+  const length = board.length;
+  let rowIndex = 0;
 
-//   for (let i = 0; i < colLength; i++) {
-//     if (board[colIndex][i]) {
-//       return rowIndex;
-//     }
+  for (let i = 0; i < length; i++) {
+    if (board[i][colIndex]) {
+      return rowIndex;
+    }
 
-//     rowIndex = i;
+    rowIndex = i;
+  }
 
-//     if (rowIndex == colLength - 1) {
-//       return rowIndex;
-//     }
-//   }
-// }
-
-// export default findNextRow;
+  return rowIndex;
+}

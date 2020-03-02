@@ -45,7 +45,7 @@ export class AddDotBtn extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          currentPlayer: this.currentPlayer,
+          player: this.currentPlayer,
           colIndex: this.colIndex
         }
       })

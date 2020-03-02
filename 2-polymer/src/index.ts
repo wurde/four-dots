@@ -6,6 +6,7 @@ import {
 } from "lit-element";
 
 import { createBoard } from "./helpers/createBoard";
+import { findNextRow } from "./helpers/findNextRow";
 
 import "./components/winneralert";
 import "./components/header";
@@ -34,8 +35,8 @@ export class FourDotsApp extends LitElement {
   updateGameState(e: CustomEvent) {
     const { colIndex, player } = e.detail
 
-    console.log("updateGameState", colIndex, player);
-    // this.board[rowIndex][colIndex] = player;
+    const rowIndex = findNextRow(this.board, colIndex);
+    this.board[rowIndex][colIndex] = player;
   }
 
   changePlayer() {
