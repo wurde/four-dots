@@ -3,7 +3,7 @@ import { styleMap } from "lit-html/directives/style-map";
 
 @customElement("four-dot-winneralert")
 export class WinnerAlert extends LitElement {
-  @property({ type: String }) visibility;
+  @property({ type: String }) winner;
 
   static styles = css`
     div {
@@ -28,8 +28,8 @@ export class WinnerAlert extends LitElement {
 
   render() {
     return html`
-      <div style=${styleMap({ visibility: this.visibility })}>
-        Congratulations! <br /><span class="winner-player"></span>
+      <div style=${styleMap({ visibility: this.winner ? "visible" : "hidden" })}>
+        Congratulations! <br /><span class="winner-player">${this.winner} player wins</span>
       </div>
     `;
   }

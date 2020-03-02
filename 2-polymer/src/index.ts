@@ -17,7 +17,7 @@ export class FourDotsApp extends LitElement {
   @property({ type: Array }) actionbar = new Array(12).fill(null);
   @property({ type: Array }) board = createBoard();
   @property({ type: String }) currentPlayer = "blue";
-  @property({ type: String }) visibility = "hidden";
+  @property({ type: String }) winner;
 
   constructor() {
     super();
@@ -29,7 +29,7 @@ export class FourDotsApp extends LitElement {
 
   restartGame() {
     this.currentPlayer = "blue";
-    this.visibility = "hidden";
+    this.winner = null;
     this.board = createBoard();
   }
 
@@ -136,17 +136,20 @@ export class FourDotsApp extends LitElement {
       rightCounter++;
     }
     if (count == 4) {
-      this.rewardWinner(player)
+      this.rewardWinner(player);
       return;
     }
+  }
+
+  rewardWinner(player) {
+    this.actionbar.fill("disabled");
+    this.winner = player;
   }
 
   render() {
     return html`
       <div>
-        <four-dot-winneralert
-          visibility="${this.visibility}"
-        ></four-dot-winneralert>
+        <four-dot-winneralert .winner="${this.winner}"></four-dot-winneralert>
 
         <four-dot-header></four-dot-header>
 
